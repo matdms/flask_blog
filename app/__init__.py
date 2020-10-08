@@ -9,5 +9,6 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
+login.login_view = 'login'  # indique la vue qui gere le login, notamment pour interdire l'accès aux users non loggés avec @login_required dans routes.py
 
 from app import routes, models

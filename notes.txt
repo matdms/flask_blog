@@ -10,5 +10,4 @@ $ source venv/bin/activate
 Activation serveur:
 (venv) $ flask run
 
-Avancement : Chapter 5 - Preparing The User Model for Flask-Login
-
+Avancement : Chapter 5 - User registration
