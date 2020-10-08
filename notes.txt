@@ -1,0 +1,14 @@
+Premier tuto Flask
+
+tuto utilisé : 
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+
+
+Lancement venv:
+$ source venv/bin/activate
+
+Activation serveur:
+(venv) $ flask run
+
+Avancement : Chapter 5 - Preparing The User Model for Flask-Login
+
