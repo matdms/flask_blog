@@ -10,5 +10,6 @@ $ source venv/bin/activate
 Activation serveur:
 (venv) $ flask run
 
-Avancement : Chapter 5 - User registration
-        --> To display this form on a web page, I need to have an HTML template, which I'm going to store in file app/templates/register.html. This template is constructed similarly to the one for the login form:
+Avancement
+        Chapter 6 - Profile Page and Avatars
+        
