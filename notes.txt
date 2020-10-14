@@ -11,11 +11,5 @@ Activation serveur:
 (venv) $ flask run
 
 Avancement
-        Chapter 6 - Profile Page and Avatars        
-                To make it easy for users to access the profile editor page, I can add a link in their profile page
-
-        Bug :
-        File "/home/mat/Documents/dev/projets/flask_blog/app/routes.py", line 82, in edit_profile
-        form = EditProfileForm()
-        NameError: name 'EditProfileForm' is not defined
-        127.0.0.1 - - [11/Oct/2020 22:53:48] "GET /edit_profile HTTP/1.1" 500 -    
+        Chapter 7 - Error handling
+                Logging to a File
