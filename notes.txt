@@ -11,5 +11,5 @@ Activation serveur:
 (venv) $ flask run
 
 Avancement
-        Chapter 7 - Error handling
-                Logging to a File
+        Chapter 8 - Followers
+                Obtaining the Posts from Followed Users
