@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
-from app.models import User
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
+from app.models import User, Post
 from werkzeug.urls import url_parse
 from datetime import datetime
 
@@ -12,22 +12,17 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required     # permet d'interdire l'accès à un user non loggé
 def index():
-    user = {'username': 'Mathieu'}
-    posts = [
-        {
-            'author': {'username': 'Freddy'},
-            'body': 'Are you gonna take me home tonight ?'
-        },
-        {
-            'author': {'username': 'Michael'},
-            'body': 'The kid is not my son !'
-        }
-    ]
-    return render_template('index.html', title='Home Page', posts=posts)
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+    posts = current_user.followed_posts().all()
+    return render_template('index.html', title='Home Page', form=form, posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -129,3 +124,9 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
+
+@app.route('/explore')
+@login_required
+def explore():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('index.html', title='Explore', posts=posts)
